@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DataSampelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -9,17 +10,22 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+// LOGIN
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DataSampelController::class, 'dashboard'])
+    ->middleware(['auth'])
+    ->name('dashboard');
 
-Route::get('/data-sampel', function () {
-    return view('data_sampel'); // nanti bikin blade nya
-})->middleware('auth')->name('data.sampel');
+Route::get('/data-sampel', [DataSampelController::class, 'index'])
+    ->middleware('auth')
+    ->name('data.sampel');
+
+Route::post('/data-sampel', [DataSampelController::class, 'store'])
+    ->middleware('auth')
+    ->name('data.sampel.store');
 
 Route::get('/stok-bahan', function () {
     return view('stok_bahan');
@@ -29,7 +35,6 @@ Route::get('/stok-alat', function () {
     return view('stok_alat');
 })->middleware('auth')->name('stok.alat');
 
-
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,5 +43,5 @@ Route::middleware('auth')->group(function () {
 
 });
 
-
+// AUTH
 require __DIR__.'/auth.php';
