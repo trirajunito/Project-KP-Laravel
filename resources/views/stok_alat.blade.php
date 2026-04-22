@@ -1,0 +1,1 @@
+<h1>Stok Alat</h1>
