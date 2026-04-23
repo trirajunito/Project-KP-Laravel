@@ -39,6 +39,38 @@ class DataSampelController extends Controller
         return back()->with('success', 'Data berhasil ditambahkan');
     }
 
+    public function edit($id)
+    {
+        $sampel = DataSampel::findOrFail($id);
+        return view('edit_sampel', compact('sampel'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $sampel = DataSampel::findOrFail($id);
+
+        $sampel->update([
+            'nama' => $request->nama_pelanggan,
+            'telp' => $request->no_telp,
+            'personel' => $request->personel,
+            'tanggal' => $request->tanggal,
+            'jenis' => $request->jenis_sampel,
+            'jumlah' => $request->jumlah,
+            'keterangan' => $request->keterangan,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        return redirect()->route('data.sampel')
+            ->with('success', 'Data berhasil diupdate');
+    }
+
+    public function destroy($id)
+    {
+        DataSampel::findOrFail($id)->delete();
+
+        return back()->with('success', 'Data berhasil dihapus');
+    }
+
     public function dashboard(Request $request)
     {
         $tahun = $request->tahun ?? date('Y');
@@ -53,7 +85,6 @@ class DataSampelController extends Controller
             ->groupBy(DB::raw('MONTH(tanggal)'))
             ->get();
 
-        // default 0 untuk 12 bulan
         $datang = array_fill(1, 12, 0);
         $sampling = array_fill(1, 12, 0);
 

@@ -69,6 +69,7 @@
     <th>Jenis</th>
     <th>Jumlah</th>
     <th>Keterangan</th>
+    <th>Aksi</th>
 </tr>
 </thead>
 
@@ -82,6 +83,24 @@
     <td>{{ $d->jenis }}</td>
     <td>{{ $d->jumlah }}</td>
     <td>{{ $d->keterangan }}</td>
+
+    <td class="p-2 space-x-2">
+        <!-- EDIT -->
+        <a href="{{ route('sampel.edit', $d->id) }}"
+           class="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500">
+           Edit
+        </a>
+
+        <!-- DELETE -->
+        <form action="{{ route('sampel.destroy', $d->id) }}" method="POST" class="inline">
+            @csrf
+            @method('DELETE')
+            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                onclick="return confirm('Yakin mau hapus data ini?')">
+                Hapus
+            </button>
+        </form>
+    </td>
 </tr>
 @endforeach
 </tbody>

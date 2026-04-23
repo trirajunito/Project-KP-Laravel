@@ -10,7 +10,6 @@ use App\Http\Controllers\DataSampelController;
 |--------------------------------------------------------------------------
 */
 
-// LOGIN
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -26,6 +25,20 @@ Route::get('/data-sampel', [DataSampelController::class, 'index'])
 Route::post('/data-sampel', [DataSampelController::class, 'store'])
     ->middleware('auth')
     ->name('data.sampel.store');
+
+
+Route::get('/data-sampel/{id}/edit', [DataSampelController::class, 'edit'])
+    ->middleware('auth')
+    ->name('sampel.edit');
+
+Route::put('/data-sampel/{id}', [DataSampelController::class, 'update'])
+    ->middleware('auth')
+    ->name('sampel.update');
+
+Route::delete('/data-sampel/{id}', [DataSampelController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('sampel.destroy');
+
 
 Route::get('/stok-bahan', function () {
     return view('stok_bahan');

@@ -15,38 +15,32 @@
             <p class="text-gray-500 text-sm">Sistem Monitoring & Pengelolaan Data</p>
         </div>
 
-        <!-- Form -->
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- Email -->
             <div class="mb-4">
-                <label class="block text-sm text-gray-600 mb-1">Email</label>
+                <label class="block text-sm text-gray-600 mb-1">Username/id</label>
                 <input type="username" name="username" required
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
-            <!-- Password -->
             <div class="mb-4">
                 <label class="block text-sm text-gray-600 mb-1">Password</label>
                 <input type="password" name="password" required
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
             </div>
 
-            <!-- Remember -->
             <div class="flex items-center mb-4">
                 <input type="checkbox" name="remember" class="mr-2">
                 <label class="text-sm text-gray-600">Ingat saya</label>
             </div>
 
-            <!-- Button -->
             <button type="submit"
                 class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">
                 Login
             </button>
         </form>
-
-        <!-- Footer -->
+        
         <p class="text-center text-xs text-gray-400 mt-6">
             © 2026 UPTD Lingkungan Hidup
         </p>

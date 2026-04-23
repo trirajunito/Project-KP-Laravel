@@ -42,7 +42,6 @@
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-2xl font-bold">Dashboard</h1>
 
-            <!-- FILTER TAHUN -->
             <form method="GET">
                 <select name="tahun" onchange="this.form.submit()" class="border p-2 rounded">
                     @for($i = date('Y'); $i >= 2020; $i--)
@@ -58,7 +57,15 @@
         <!-- GRAFIK -->
         <div class="bg-white p-5 rounded shadow mb-6">
             <h2 class="font-semibold mb-4">Grafik Jumlah Sampel</h2>
-            <canvas id="chartSampel"></canvas>
+
+            <div class="w-full md:w-3/4 mx-auto">
+                <canvas 
+                    id="chartSampel"
+                    height="120"
+                    data-datang='@json($datang)'
+                    data-sampling='@json($sampling)'
+                ></canvas>
+            </div>
         </div>
 
 
@@ -87,27 +94,31 @@
 
 
 <script>
-const ctx = document.getElementById('chartSampel');
+const canvas = document.getElementById('chartSampel');
 
-new Chart(ctx, {
+const datang = JSON.parse(canvas.dataset.datang || '[]');
+const sampling = JSON.parse(canvas.dataset.sampling || '[]');
+
+new Chart(canvas, {
     type: 'bar',
     data: {
         labels: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],
         datasets: [
             {
                 label: 'Sampel Datang',
-                data: @json($datang ?? [0,0,0,0,0,0,0,0,0,0,0,0]),
+                data: datang.length ? datang : [0,0,0,0,0,0,0,0,0,0,0,0],
                 backgroundColor: 'green'
             },
             {
                 label: 'Sampling',
-                data: @json($sampling ?? [0,0,0,0,0,0,0,0,0,0,0,0]),
+                data: sampling.length ? sampling : [0,0,0,0,0,0,0,0,0,0,0,0],
                 backgroundColor: 'blue'
             }
         ]
     },
     options: {
-        responsive: true
+        responsive: true,
+        maintainAspectRatio: false
     }
 });
 </script>
