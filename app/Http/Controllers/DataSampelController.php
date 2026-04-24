@@ -12,7 +12,6 @@ class DataSampelController extends Controller
     {
         $query = DataSampel::query();
 
-        // SEARCH
         if ($request->search) {
             $query->where('nama', 'like', '%' . $request->search . '%')
                   ->orWhere('personel', 'like', '%' . $request->search . '%');
