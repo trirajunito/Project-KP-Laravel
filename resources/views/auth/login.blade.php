@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Login - UPTD Lingkungan Hidup</title>
+    <title>Login - UPT Lingkungan Hidup</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-green-50 flex items-center justify-center min-h-screen">
@@ -11,7 +11,7 @@
         
         <!-- Header -->
         <div class="text-center mb-6">
-            <h1 class="text-2xl font-bold text-green-700">UPTD Lingkungan Hidup</h1>
+            <h1 class="text-2xl font-bold text-green-700">UPT Lingkungan Hidup</h1>
             <p class="text-gray-500 text-sm">Sistem Monitoring & Pengelolaan Data</p>
         </div>
 

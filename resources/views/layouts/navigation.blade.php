@@ -1,43 +1,267 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+<nav x-data="{ open: false }">
 
-            <div class="flex">
-                <!-- ❌ LOGO DIHAPUS -->
+    <!-- SIDEBAR -->
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-2 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        Dashboard
-                    </x-nav-link>
+    <div
+        class="fixed top-0 left-0
+w-64 h-screen
+bg-gradient-to-b
+from-green-800
+to-emerald-700
+shadow-2xl
+text-white
+flex flex-col
+justify-between
+z-50">
+
+        <div>
+
+            <!-- PROFILE -->
+
+            <div
+                class="text-center
+py-8
+border-b
+border-green-600">
+
+                <div
+                    class="w-20 h-20
+mx-auto
+rounded-full
+bg-white/20
+flex
+items-center
+justify-center
+text-3xl
+mb-3">
+
+                    <i class="fas fa-user"></i>
+
                 </div>
+
+                <h2
+                    class="font-bold
+text-lg">
+
+                    {{ Auth::user()->name }}
+
+                </h2>
+
+                <p
+                    class="text-sm
+text-green-100">
+
+                    UPT Lingkungan Hidup
+
+                </p>
+
             </div>
 
-            <!-- Settings -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="text-sm text-gray-600 hover:text-gray-800">
-                            {{ Auth::user()->name }}
-                        </button>
-                    </x-slot>
+            <!-- MENU -->
 
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            Profile
-                        </x-dropdown-link>
+            <div class="mt-6 px-4">
 
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault(); this.closest('form').submit();">
-                                Logout
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
+                <a
+                    href="{{ route('dashboard') }}"
+
+                    class="
+flex
+items-center
+gap-3
+px-4
+py-3
+mb-2
+rounded-xl
+
+transition
+
+duration-300
+
+hover:bg-white/20
+
+{{ request()->routeIs('dashboard')
+? 'bg-white/20'
+: '' }}
+
+">
+
+                    <i
+                        class="
+fas fa-chart-line
+w-5
+text-center">
+                    </i>
+
+                    Dashboard
+
+                </a>
+
+                <a
+                    href="/data-sampel"
+
+                    class="
+flex
+items-center
+gap-3
+px-4
+py-3
+mb-2
+rounded-xl
+
+transition
+
+duration-300
+
+hover:bg-white/20
+
+">
+
+                    <i
+                        class="
+fas fa-flask
+w-5
+text-center">
+                    </i>
+
+                    Data Sampel
+
+                </a>
+
+                <a
+                    href="/stok-bahan"
+
+                    class="
+flex
+items-center
+gap-3
+px-4
+py-3
+mb-2
+rounded-xl
+
+transition
+
+duration-300
+
+hover:bg-white/20
+
+">
+
+                    <i
+                        class="
+fas fa-box-open
+w-5
+text-center">
+                    </i>
+
+                    Stok Bahan
+
+                </a>
+
+                <a
+                    href="/stok-alat"
+
+                    class="
+flex
+items-center
+gap-3
+px-4
+py-3
+mb-2
+rounded-xl
+
+transition
+
+duration-300
+
+hover:bg-white/20
+
+">
+
+                    <i
+                        class="
+fas fa-tools
+w-5
+text-center">
+                    </i>
+
+                    Stok Alat
+
+                </a>
+
             </div>
 
         </div>
+
+        <!-- BAWAH -->
+
+        <div
+            class="
+p-4
+border-t
+border-green-600">
+
+            <a
+                href="{{ route('profile.edit') }}"
+
+                class="
+flex
+items-center
+gap-3
+
+mb-3
+
+hover:text-green-200
+
+">
+
+                <i class="fas fa-user-cog"></i>
+
+                Profile
+
+            </a>
+
+            <form
+                method="POST"
+                action="{{ route('logout') }}">
+
+                @csrf
+
+                <button
+
+                    type="submit"
+
+                    class="
+w-full
+
+bg-red-500
+
+hover:bg-red-600
+
+transition
+
+py-3
+
+rounded-xl
+
+font-semibold
+
+">
+
+                    <i class="fas fa-sign-out-alt"></i>
+
+                    Logout
+
+                </button>
+
+            </form>
+
+        </div>
+
     </div>
+
+    <!-- CONTENT OFFSET -->
+
+    <div class="ml-64"></div>
+
 </nav>
